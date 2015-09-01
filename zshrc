@@ -1,4 +1,3 @@
-
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/sebastianb/.oh-my-zsh
 # Set name of the theme to load.
@@ -24,15 +23,25 @@ SAVEHIST=20000
 # Enable completion
 autoload -U compinit
 compinit
+# Disable flow control commands (keeps C-s from freezing everything) stty start undef stty stop undef
 
 # Disable flow control commands (keeps C-s from freezing everything)
 stty start undef
 stty stop undef
+# RVM
+#[[ -s "/Users/ben/.rvm/scripts/rvm" ]] && source "/Users/ben/.rvm/scripts/rvm"
+
+# Sourcing of other files
+export ZSH=$HOME/.oh-my-zsh
+# ZSH_THEME="avit"
+ZSH_THEME="robbyrussell"
 
 source $HOME/.dotfiles/zsh/aliases
 source $HOME/.dotfiles/zsh/functions
 source $HOME/.dotfiles/zsh/prompt
 source $HOME/.dotfiles/zsh/z
+source $(brew --prefix nvm)/nvm.sh
+eval "$(rbenv init - zsh --no-rehash)"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -110,3 +119,11 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+#
+# Add cabal bin
+export PATH=$PATH:~/.cabal/bin
+source $ZSH/oh-my-zsh.sh
+export PATH="$HOME/.node/bin:$PATH"
+export PATH="$HOME/.bin:$PATH"
+
+export PATH=$PATH:bin:~/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.rvm/bin

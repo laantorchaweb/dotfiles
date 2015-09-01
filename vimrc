@@ -48,6 +48,7 @@ Plugin 'tpope/vim-leiningen'
 
 " Colors
 Plugin 'nanotech/jellybeans.vim'
+" Plugin 'chriskempson/base16-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -131,8 +132,7 @@ map <Leader>cv :Rjview client/
 map <Leader>cn :e ~/Dropbox/notes/coding-notes.txt<cr>
 map <Leader>d orequire 'pry'<cr>binding.pry<esc>:w<cr>
 map <Leader>dr :e ~/Dropbox<cr>
-map <Leader>dj :e ~/Dropbox/notes/debugging_journal.txt<cr>
-map <Leader>ec :e ~/code/
+map <Leader>ec :e ~/code
 map <Leader>g :Start gitsh<cr>
 map <Leader>gw :!git add . && git commit -m 'WIP' && git push<cr>
 map <Leader>fix :cnoremap % %<CR>
@@ -144,7 +144,6 @@ map <Leader>mf mmgqap`m:w<cr>
 map <Leader>nn :sp ~/Dropbox/notes/programming_notes.txt<cr>
 map <Leader>o :w<cr>:call RunNearestSpec()<CR>
 map <Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>
-map <Leader>pn :sp ~/Dropbox/work/thoughtbot/notes/project-notes.txt<cr>
 map <Leader>ra :%s/
 map <Leader>rd :!bundle exec rspec % --format documentation<CR>
 map <Leader>rs :vsp <C-r>#<cr><C-w>w
@@ -182,6 +181,8 @@ if exists(":Tabularize")
   nmap <Leader>a: :Tabularize /:\zs<CR>
   vmap <Leader>a: :Tabularize /:\zs<CR>
 endif
+
+let g:user_emmet_leader_key='<C-Z>'
 
 " Edit another file in the same directory as the current file
 " uses expression to extract path from current file's path
@@ -242,6 +243,9 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+set splitbelow
+set splitright
+
 " Set the tag file search order
 set tags=./tags;
 
@@ -257,7 +261,8 @@ let g:NERDTreeIgnore=['\~$', 'tmp']
 
 " Highlight the status line
 highlight StatusLine ctermfg=blue ctermbg=yellow
-
+highlight Normal ctermbg=none
+highlight NonText ctermbg=none
 " Format xml files
 au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
 
