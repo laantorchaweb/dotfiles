@@ -1,4 +1,4 @@
-# Ben Orenstein's dot files
+# Fork of Ben Orenstein's dot files with my custom modifications
 
 These are config files to set up a system the way I like it.
 
@@ -8,7 +8,7 @@ I'm also a pretty aggressive aliaser. You might find a few you like in [zsh/alia
 
 ## Installation
 
-  git clone git://github.com/r00k/dotfiles ~/.dotfiles
+  git clone git://github.com/laantorchaweb/dotfiles ~/.dotfiles
   cd ~/.dotfiles
   rake install
 
