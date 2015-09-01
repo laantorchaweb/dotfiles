@@ -1,6 +1,6 @@
 [user]
-	name = Ben Orenstein
-	email = ben.orenstein@gmail.com 
+	name = Sebastian Baroni
+	email = sebastian.baroni@rga.com 
 [alias]
 	co = checkout
         cleanup = !git remote prune origin && git gc && git clean -df && git stash clear
@@ -13,7 +13,7 @@
         meta = yellow 
 
 [core]
-	excludesfile = ~/.gitignore
+	excludesfile = /Users/sebastianb/.gitignore
 	editor = vim --noplugin
 [apply]
 	whitespace = nowarn
@@ -23,13 +23,19 @@
 [help]
 	autocorrect = 1
 [branch]
-	autosetupmerge = true
+	autosetupmerge = always
         autosetuprebase = always
 [push]
 	default = current
 [rerere]
 	enabled = 1
 [github]
-	user = r00k
+	user = laantorchaweb
 [merge]
         ff = only
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
