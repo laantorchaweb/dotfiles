@@ -36,6 +36,9 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'bling/vim-airline'
 Bundle 'godlygeek/tabular'
 Plugin 'Raimondi/delimitMate'
+Plugin 'koron/nyancat-vim'
+Plugin 'tmux-plugins/vim-tmux-focus-events'
+Plugin 'tmux-plugins/vim-tmux'
 
 " Clojure
 Plugin 'guns/vim-clojure-static'
@@ -61,8 +64,28 @@ let g:ycm_add_preview_to_completeopt=0
 let g:ycm_confirm_extra_conf=0
 set completeopt-=preview
 
+let g:user_emmet_leader_key='<C-Z>'
+
 " Use the colorscheme from above
 colorscheme jellybeans
+
+" set background=dark
+" colorscheme base16-railscasts
+
+highlight clear SignColumn
+highlight VertSplit    ctermbg=236
+highlight ColorColumn  ctermbg=237
+highlight LineNr       ctermbg=236 ctermfg=240
+highlight CursorLineNr ctermbg=236 ctermfg=240
+highlight CursorLine   ctermbg=236
+highlight StatusLineNC ctermbg=238 ctermfg=0
+highlight StatusLine   ctermbg=240 ctermfg=12
+highlight IncSearch    ctermbg=3   ctermfg=1
+highlight Search       ctermbg=1   ctermfg=3
+highlight Visual       ctermbg=3   ctermfg=0
+highlight Pmenu        ctermbg=240 ctermfg=12
+highlight PmenuSel     ctermbg=3   ctermfg=1
+highlight SpellBad     ctermbg=0   ctermfg=1
 
 " ========================================================================
 " Ruby stuff
@@ -112,7 +135,6 @@ map <Leader>dj :e ~/Dropbox/notes/debugging_journal.txt<cr>
 map <Leader>ec :e ~/code/
 map <Leader>g :Start gitsh<cr>
 map <Leader>gw :!git add . && git commit -m 'WIP' && git push<cr>
-map <Leader>f :call OpenFactoryFile()<CR>
 map <Leader>fix :cnoremap % %<CR>
 map <Leader>fa :sp test/factories.rb<CR>
 map <Leader>i mmgg=G`m
@@ -152,6 +174,7 @@ map <Leader>vm :Vmodel<cr>
 map <Leader>vv :Vview<cr>
 map <Leader>w <C-w>w
 map <Leader>x :exec getline(".")<cr>
+map <leader>a :Ag!<space>
 
 if exists(":Tabularize")
   nmap <Leader>a= :Tabularize /=<CR>
@@ -183,10 +206,12 @@ imap <c-e> <c-o>$
 imap <c-a> <c-o>^
 
 set backspace=indent,eol,start " allow backspacing over everything in insert mode
-set history=500		" keep 500 lines of command line history
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
+set history=500                " keep 500 lines of command line history
+set ruler                      " show the cursor position all the time
+set showcmd                    " display incomplete commands
 set autoindent
+set ts=2
+set shiftwidth=2
 set showmatch
 set nowrap
 set backupdir=~/.tmp
@@ -198,6 +223,7 @@ set guioptions-=T
 set guifont=Triskweline_10:h10
 set et
 set sw=2
+set vb
 set smarttab
 set incsearch
 set hlsearch
@@ -227,6 +253,7 @@ highlight PmenuSel ctermfg=black
 
 " Ignore stuff that can't be opened
 set wildignore+=tmp/**
+let g:NERDTreeIgnore=['\~$', 'tmp']
 
 " Highlight the status line
 highlight StatusLine ctermfg=blue ctermbg=yellow
@@ -306,6 +333,16 @@ let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
 let g:ctrlp_use_caching = 0
 
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+
+" ctrlp config
+" let g:ctrlp_map = '<leader>f'
+let g:ctrlp_max_height = 30
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_match_window_reversed = 0
+
+" use silver searcher for ctrlp
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Test-running stuff
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
