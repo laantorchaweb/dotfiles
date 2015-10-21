@@ -34,11 +34,13 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'pangloss/vim-javascript'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'bling/vim-airline'
-Bundle 'godlygeek/tabular'
 Plugin 'Raimondi/delimitMate'
 Plugin 'koron/nyancat-vim'
 Plugin 'tmux-plugins/vim-tmux-focus-events'
 Plugin 'tmux-plugins/vim-tmux'
+
+Bundle 'godlygeek/tabular'
+Bundle 'christoomey/vim-tmux-navigator'
 
 " Clojure
 Plugin 'guns/vim-clojure-static'
