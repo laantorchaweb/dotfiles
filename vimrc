@@ -362,6 +362,9 @@ let g:rspec_command = "Dispatch bin/rspec {spec}"
 
 inoremap <Tab> <C-P>
 
+" jk is escape
+inoremap jk <esc>
+
 " Let's be reasonable, shall we?
 nmap k gk
 nmap j gj
