@@ -1,6 +1,6 @@
 [user]
 	name = Sebastian Baroni
-	email = laantorchaweb@gmail.com 
+	email = laantorchaweb@gmail.com
 [alias]
 	co = checkout
         cleanup = !git remote prune origin && git gc && git clean -df && git stash clear

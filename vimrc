@@ -51,7 +51,8 @@ Plugin 'tpope/vim-leiningen'
 
 " Colors
 Plugin 'nanotech/jellybeans.vim'
-" Plugin 'chriskempson/base16-vim'
+Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
+Plugin 'kristijanhusak/vim-hybrid-material'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -73,8 +74,11 @@ let g:user_emmet_leader_key='<C-Z>'
 " Use the colorscheme from above
 colorscheme jellybeans
 
-" set background=dark
-" colorscheme base16-railscasts
+" colorscheme hybrid_reverse
+" colorscheme hybrid_material
+
+" color dracula
+
 
 highlight clear SignColumn
 highlight VertSplit    ctermbg=236
@@ -265,7 +269,7 @@ set grepprg=ag
 highlight PmenuSel ctermfg=black
 
 " Ignore stuff that can't be opened
-set wildignore+=tmp/**
+set wildignore+=*/tmp/*,*.o,*.so,*.swp,*.zip,*/node_modules/*,*/bower_components/*
 let g:NERDTreeIgnore=['\~$', 'tmp']
 
 " Highlight the status line
@@ -346,7 +350,8 @@ endfunction
 let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
 let g:ctrlp_use_caching = 0
 
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+" let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_custom_ignore = '\v[\/]\.(DS_Store|git|hg|svn|optimized|compiled|node_modules|bower_components)$'
 
 " ctrlp config
 " let g:ctrlp_map = '<leader>f'
