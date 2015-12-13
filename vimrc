@@ -137,8 +137,14 @@ map <Leader>dr :e ~/Dropbox<cr>
 map <Leader>ec :e ~/code
 map <Leader>g :Start gitsh<cr>
 map <Leader>gw :!git add . && git commit -m 'WIP' && git push<cr>
-map <Leader>fix :cnoremap % %<CR>
-map <Leader>fa :sp test/factories.rb<CR>
+map <leader>gb :Gblame<cr>
+map <leader>gs :Gstatus<cr>
+map <leader>gd :Gdiff<cr>
+map <leader>gl :Glog<cr>
+map <leader>gc :Gcommit<cr>
+map <leader>gp :Git push<cr>
+map <Leader>fix :cnoremap % %<cr>
+map <Leader>fa :sp test/factories.rb<cr>
 map <Leader>i mmgg=G`m
 map <Leader>l oconsole.log 'debugging'<esc>:w<cr>
 map <Leader>m :Rmodel
