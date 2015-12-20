@@ -122,6 +122,7 @@ runtime macros/matchit.vim
 let mapleader = ","
 
 map <Leader>ac :sp app/controllers/application_controller.rb<cr>
+map <Leader>f :CtrlP<cr>
 vmap <Leader>b :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
 map <Leader>bb :!bundle install<cr>
 nmap <Leader>bi :source ~/.vimrc<cr>:PluginInstall<cr>
@@ -279,6 +280,7 @@ highlight Normal ctermbg=none
 highlight NonText ctermbg=none
 " Format xml files
 au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
+au BufNewFile,BufRead *.ejs set filetype=html
 
 set shiftround " When at 3 spaces and I hit >>, go to 4, not 5.
 
@@ -355,14 +357,19 @@ let g:ctrlp_use_caching = 0
 let g:ctrlp_custom_ignore = '\v[\/]\.(DS_Store|git|hg|svn|optimized|compiled|node_modules|bower_components)$'
 
 " ctrlp config
-" let g:ctrlp_map = '<leader>f'
+let g:ctrlp_map = '<leader>f'
+let g:ctrlp_max_files = 0
 let g:ctrlp_max_height = 30
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_match_window_reversed = 0
 
+set wildignore+=*/node_modules/**
+set wildignore+=*/bower_components/**
+
 " use silver searcher for ctrlp
 let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 let g:ackprg = 'ag --nogroup --nocolor --column'
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Test-running stuff
