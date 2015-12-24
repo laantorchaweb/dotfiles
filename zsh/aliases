@@ -7,6 +7,7 @@ elif [[ $platform == 'Darwin' ]]; then
 fi
 
 alias ack='ag'
+alias sl='sails lift'
 alias amend="git commit --amend"
 alias log="git log"
 alias asu="cd ~/code/rails/activesupport"
