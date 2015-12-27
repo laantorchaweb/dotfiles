@@ -150,7 +150,7 @@ map <leader>gl :Glog<cr>
 map <leader>gc :Gcommit<cr>
 map <leader>gp :Git push<cr>
 map <Leader>fix :cnoremap % %<cr>
-map <Leader>fa :sp test/factories.rb<cr>
+" map <Leader>fa :sp test/factories.rb<cr>
 map <Leader>i mmgg=G`m
 map <Leader>l oconsole.log 'debugging'<esc>:w<cr>
 map <Leader>m :Rmodel

@@ -41,7 +41,6 @@ source $HOME/.dotfiles/zsh/functions
 source $HOME/.dotfiles/zsh/prompt
 source $HOME/.dotfiles/zsh/z
 # source $(brew --prefix nvm)/nvm.sh
-eval "$(rbenv init - zsh --no-rehash)"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
@@ -90,10 +89,14 @@ export NVM_DIR="$HOME/.nvm"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 plugins=(sublime)
+plugins=(ember-cli)
 # User configuration
 
 #export PATH="$HOME/.composer/vendor/bin:$PATH"
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/sebastianb/.cabal/bin:bin:/Users/sebastianb/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/sebastianb/.rvm/bin:$HOME/.composer/vendor/bin:$PATH"
+export PATH="$HOME/.node/bin:$PATH"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/sebastianb/.cabal/bin:bin:/Users/sebastianb/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.composer/vendor/bin:$PATH"
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init - zsh --no-rehash)"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -126,7 +129,6 @@ source $ZSH/oh-my-zsh.sh
 # Add cabal bin
 export PATH=$PATH:~/.cabal/bin
 source $ZSH/oh-my-zsh.sh
-export PATH="$HOME/.node/bin:$PATH"
 export PATH="$HOME/.bin:$PATH"
 
 export PATH=$PATH:bin:~/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.rvm/bin

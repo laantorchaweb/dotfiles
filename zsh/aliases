@@ -103,6 +103,7 @@ alias undeployed='git fetch --multiple production origin && git log production/m
 alias v='vim'
 alias vi='vim'
 alias log='git lg'
+alias startelasticsearch='elasticsearch --config=/usr/local/opt/elasticsearch/config/elasticsearch.yml'
 alias nombom=turnitoffandonagain
 alias offandon=turnitoffandonagain
 alias helloit=turnitoffandonagain
