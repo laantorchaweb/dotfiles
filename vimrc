@@ -13,6 +13,12 @@ Plugin 'gmarik/Vundle.vim'
 
 " My bundles
 Plugin 'ervandew/supertab'
+Plugin 'elixir-lang/vim-elixir'
+Plugin 'slashmili/alchemist.vim'
+Plugin 'sheerun/vim-polyglot'
+Plugin 'neomake/neomake'
+Plugin 'c-brenn/phoenix.vim'
+Plugin 'tpope/vim-projectionist'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'skwp/greplace.vim'
 Plugin 'rking/ag.vim'
@@ -34,11 +40,15 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive'
 Plugin 'pangloss/vim-javascript'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Raimondi/delimitMate'
 Plugin 'koron/nyancat-vim'
 Plugin 'tmux-plugins/vim-tmux-focus-events'
 Plugin 'tmux-plugins/vim-tmux'
+Plugin 'digitaltoad/vim-pug'
+Plugin 'wavded/vim-stylus'
+Plugin 'editorconfig/editorconfig-vim'
 
 Bundle 'godlygeek/tabular'
 Bundle 'christoomey/vim-tmux-navigator'
@@ -60,10 +70,26 @@ filetype plugin indent on    " required
 
 Plugin 'scrooloose/syntastic'
  
+
+autocmd! BufWritePost * Neomake
 " This does what it says on the tin. It will check your file on open too, not
 " just on save.
 " You might not want this, so just leave it out if you don't.
+let g:alchemist_tag_disable = 1
 let g:syntastic_check_on_open=1
+let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_html_tidy_exec = 'tidy5'
+" let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_html_tidy_ignore_errors = [ '<input> proprietary attribute "role"' ]
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 let g:ycm_add_preview_to_completeopt=0
 let g:ycm_confirm_extra_conf=0
@@ -72,28 +98,32 @@ set completeopt-=preview
 let g:user_emmet_leader_key='<C-Z>'
 
 " Use the colorscheme from above
-colorscheme jellybeans
+" colorscheme jellybeans
 
-" colorscheme hybrid_reverse
-" colorscheme hybrid_material
+"colorscheme hybrid_reverse
+colorscheme hybrid_material
 
-" color dracula
+"colorscheme dracula
+"
+" below are configurations needed for material colorscheme
+let g:enable_bold_font = 1
+"set background=dark
+let g:airline_theme = "hybrid"
 
-
-highlight clear SignColumn
-highlight VertSplit    ctermbg=236
-highlight ColorColumn  ctermbg=237
-highlight LineNr       ctermbg=236 ctermfg=240
-highlight CursorLineNr ctermbg=236 ctermfg=240
-highlight CursorLine   ctermbg=236
-highlight StatusLineNC ctermbg=238 ctermfg=0
-highlight StatusLine   ctermbg=240 ctermfg=12
-highlight IncSearch    ctermbg=3   ctermfg=1
-highlight Search       ctermbg=1   ctermfg=3
-highlight Visual       ctermbg=3   ctermfg=0
-highlight Pmenu        ctermbg=240 ctermfg=12
-highlight PmenuSel     ctermbg=3   ctermfg=1
-highlight SpellBad     ctermbg=0   ctermfg=1
+"highlight clear SignColumn
+"highlight VertSplit    ctermbg=236
+"highlight ColorColumn  ctermbg=237
+"highlight LineNr       ctermbg=236 ctermfg=240
+"highlight CursorLineNr ctermbg=236 ctermfg=240
+"highlight CursorLine   ctermbg=236
+"highlight StatusLineNC ctermbg=238 ctermfg=0
+"highlight StatusLine   ctermbg=240 ctermfg=12
+"highlight IncSearch    ctermbg=3   ctermfg=1
+"highlight Search       ctermbg=1   ctermfg=3
+"highlight Visual       ctermbg=3   ctermfg=0
+"highlight Pmenu        ctermbg=240 ctermfg=12
+"highlight PmenuSel     ctermbg=3   ctermfg=1
+"highlight SpellBad     ctermbg=0   ctermfg=1
 
 " ========================================================================
 " Ruby stuff
@@ -138,7 +168,6 @@ map <Leader>cs :call SearchForCallSitesCursor()<CR>
 map <Leader>ct :Rtemplate client/
 map <Leader>cv :Rjview client/
 map <Leader>cn :e ~/Dropbox/notes/coding-notes.txt<cr>
-map <Leader>d orequire 'pry'<cr>binding.pry<esc>:w<cr>
 map <Leader>dr :e ~/Dropbox<cr>
 map <Leader>ec :e ~/code
 map <Leader>g :Start gitsh<cr>
@@ -251,6 +280,10 @@ set scrolloff=1
 set lazyredraw " Don't redraw screen when running macros.
 set splitbelow
 set splitright
+set ttyfast
+
+" set wrap
+" set textwidth=80
 
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -270,8 +303,6 @@ set grepprg=ag
 " Make the omnicomplete text readable
 highlight PmenuSel ctermfg=black
 
-" Ignore stuff that can't be opened
-set wildignore+=*/tmp/*,*.o,*.so,*.swp,*.zip,*/node_modules/*,*/bower_components/*
 let g:NERDTreeIgnore=['\~$', 'tmp']
 
 " Highlight the status line
@@ -359,10 +390,12 @@ let g:ctrlp_custom_ignore = '\v[\/]\.(DS_Store|git|hg|svn|optimized|compiled|nod
 " ctrlp config
 let g:ctrlp_map = '<leader>f'
 let g:ctrlp_max_files = 0
-let g:ctrlp_max_height = 30
+let g:ctrlp_max_height = 15
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_match_window_reversed = 0
 
+" Ignore stuff that can't be opened
+set wildignore+=*/tmp/*,*.o,*.so,*.swp,*.zip,*/node_modules/*,*/bower_components/*
 set wildignore+=*/node_modules/**
 set wildignore+=*/bower_components/**
 
@@ -412,7 +445,7 @@ function! OpenFactoryFile()
 endfunction
 
 " Set gutter background to black
-highlight SignColumn ctermbg=black
+"highlight SignColumn ctermbg=black
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " RENAME CURRENT FILE (thanks Gary Bernhardt)

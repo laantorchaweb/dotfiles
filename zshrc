@@ -7,6 +7,10 @@ export ZSH=/Users/sebastianb/.oh-my-zsh
 # ZSH_THEME="daveverwer"
 ZSH_THEME="robbyrussell"
 
+# Base16 Shell
+BASE16_SHELL="$HOME/.config/base16-shell/base16-material.dark.sh"
+[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+
 # Allow completing of the remainder of a command
 bindkey "^N" insert-last-word
 #
@@ -42,9 +46,29 @@ source $HOME/.dotfiles/zsh/prompt
 source $HOME/.dotfiles/zsh/z
 # source $(brew --prefix nvm)/nvm.sh
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+#export NVM_DIR="$HOME/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
+nvm() {
+    unset -f nvm
+    export NVM_DIR=~/.nvm
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+    nvm "$@"
+}
+
+node() {
+    unset -f node
+    export NVM_DIR=~/.nvm
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+    node "$@"
+}
+
+npm() {
+    unset -f npm
+    export NVM_DIR=~/.nvm
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+    npm "$@"
+}
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -87,15 +111,15 @@ export NVM_DIR="$HOME/.nvm"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
-plugins=(sublime)
-plugins=(ember-cli)
+#plugins=(git rails ruby npm)
+plugins=(elixir)
 # User configuration
 
 #export PATH="$HOME/.composer/vendor/bin:$PATH"
 export PATH="$HOME/.node/bin:$PATH"
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/sebastianb/.cabal/bin:bin:/Users/sebastianb/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.composer/vendor/bin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/.rbenv/shims:$PATH"
 eval "$(rbenv init - zsh --no-rehash)"
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -123,7 +147,7 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
+alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 # Add cabal bin

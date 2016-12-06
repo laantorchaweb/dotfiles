@@ -24,8 +24,9 @@ alias br='bin/rspec'
 alias bu='bundle update'
 alias bunbang='bundle install && !!'
 alias c='cd'
-alias code='cd ~/Documents/projects'
-alias tutos='cd ~/Documents/projects/tutorials'
+alias code='cd ~/Documents/projects && clear'
+alias composer='php /usr/local/bin/composer.phar'
+alias tutos='cd ~/Documents/projects/tutorials && clear'
 alias d='cd ~/.dotfiles'
 alias dbprep='rdm && rdtp'
 alias drop='cd ~/Dropbox'
@@ -104,12 +105,12 @@ alias v='vim'
 alias vi='vim'
 alias log='git lg'
 alias startelasticsearch='elasticsearch --config=/usr/local/opt/elasticsearch/config/elasticsearch.yml'
-alias nombom=turnitoffandonagain
-alias offandon=turnitoffandonagain
-alias helloit=turnitoffandonagain
+alias nombom='npm cache clear && bower cache clean && rm -rf node_modules bower_components && npm install && bower install'
+alias weather='curl http://wttr\.in/san%20miguel,argentina'
 # Heroku staging
 alias staging-console='heroku run console --remote staging'
 alias staging-tail='heroku logs --tail --remote staging'
+
 
 # Heroku production
 alias production-console='heroku run console --remote production'

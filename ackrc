@@ -1,6 +1,8 @@
 --type-add
 ruby=.haml,.feature,.scss,.coffee
 --ignore-dir=vendor
+--ignore-dir=node_modules
+--ignore-dir=bower_components
 --ignore-dir=log
 --ignore-dir=tmp
 --ignore-dir=doc
