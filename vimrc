@@ -31,6 +31,7 @@ Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
+Plugin 'terryma/vim-multiple-cursors'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'mattn/emmet-vim'
@@ -96,6 +97,12 @@ let g:ycm_confirm_extra_conf=0
 set completeopt-=preview
 
 let g:user_emmet_leader_key='<C-Z>'
+
+" Default mapping
+let g:multi_cursor_next_key='<C-n>'
+let g:multi_cursor_prev_key='<C-p>'
+let g:multi_cursor_skip_key='<C-x>'
+let g:multi_cursor_quit_key='<Esc>'
 
 " Use the colorscheme from above
 " colorscheme jellybeans
@@ -241,7 +248,7 @@ map <C-s> <esc>:w<CR>
 imap <C-s> <esc>:w<CR>
 map <C-t> <esc>:tabnew<CR>
 map <C-x> <C-w>c
-map <C-n> :cn<CR>
+"map <C-n> :cn<CR>
 map <C-p> :cp<CR>
 imap <C-c> <CR><Esc>O
 
@@ -304,6 +311,8 @@ set grepprg=ag
 highlight PmenuSel ctermfg=black
 
 let g:NERDTreeIgnore=['\~$', 'tmp']
+
+nmap <leader>ne :NERDTreeToggle<cr>
 
 " Highlight the status line
 highlight StatusLine ctermfg=blue ctermbg=yellow
