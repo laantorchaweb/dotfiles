@@ -18,6 +18,7 @@ Plugin 'slashmili/alchemist.vim'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'neomake/neomake'
 Plugin 'c-brenn/phoenix.vim'
+Plugin 'sukima/vim-emberlayout'
 Plugin 'tpope/vim-projectionist'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'skwp/greplace.vim'
@@ -80,6 +81,7 @@ let g:alchemist_tag_disable = 1
 let g:syntastic_check_on_open=1
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_html_tidy_exec = 'tidy5'
+let g:syntastic_scss_checkers = ['sass_lint']
 " let g:syntastic_javascript_checkers = ['eslint']
 " let g:syntastic_html_tidy_ignore_errors = [ '<input> proprietary attribute "role"' ]
 
@@ -390,27 +392,32 @@ endfunction
 
 " Make CtrlP use ag for listing the files. Way faster and no useless files.
 " Without --hidden, it never finds .travis.yml since it starts with a dot
-" let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
-let g:ctrlp_use_caching = 0
-
-" let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-let g:ctrlp_custom_ignore = '\v[\/]\.(DS_Store|git|hg|svn|optimized|compiled|node_modules|bower_components)$'
 
 " ctrlp config
 let g:ctrlp_map = '<leader>f'
+let g:ctrlp_use_caching = 0
 let g:ctrlp_max_files = 0
 let g:ctrlp_max_height = 15
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_match_window_reversed = 0
+let g:ctrlp_custom_ignore = '\v[\/]\.(DS_Store|git|hg|svn|optimized|compiled|node_modules|bower_components|closure-library|closure-compiler|closure-templates)$'
+"
+" use silver searcher for ctrlp
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
+"if exists("g:ctrlp_user_command")
+"  unlet g:ctrlp_user_command
+"endif
 
 " Ignore stuff that can't be opened
 set wildignore+=*/tmp/*,*.o,*.so,*.swp,*.zip,*/node_modules/*,*/bower_components/*
 set wildignore+=*/node_modules/**
 set wildignore+=*/bower_components/**
-
-" use silver searcher for ctrlp
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-let g:ackprg = 'ag --nogroup --nocolor --column'
+set wildignore+=*/closure-library/**
+set wildignore+=*/closure-compiler/**
+set wildignore+=*/closure-templates/**
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -455,6 +462,12 @@ endfunction
 
 " Set gutter background to black
 "highlight SignColumn ctermbg=black
+
+if exists('+colorcolumn')
+	set colorcolumn=80
+else
+	au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " RENAME CURRENT FILE (thanks Gary Bernhardt)
