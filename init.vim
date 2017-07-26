@@ -48,12 +48,15 @@ Plug 'Yggdroot/indentLine'
 Plug 'avelino/vim-bootstrap-updater'
 Plug 'sheerun/vim-polyglot'
 Plug 'neomake/neomake'
+Plug 'editorconfig/editorconfig-vim'
 
-Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'terryma/vim-multiple-cursors'
 
-Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tmux-plugins/vim-tmux'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'tmux-plugins/vim-tmux-focus-events'
 
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
@@ -168,6 +171,9 @@ set expandtab
 
 "" Map leader to ,
 let mapleader=','
+
+"" Use CTRL+Z for Emmet
+let g:user_emmet_leader_key='<C-Z>'
 
 "" Enable hidden buffers
 set hidden
@@ -723,3 +729,9 @@ set wildignore+=*/bower_components/**
 set wildignore+=*/closure-library/**
 set wildignore+=*/closure-compiler/**
 set wildignore+=*/closure-templates/**
+
+" Default mapping for multi-curso plugin
+let g:multi_cursor_next_key='<C-n>'
+let g:multi_cursor_prev_key='<C-p>'
+let g:multi_cursor_skip_key='<C-x>'
+let g:multi_cursor_quit_key='<Esc>'
