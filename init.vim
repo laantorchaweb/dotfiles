@@ -295,18 +295,18 @@ let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
 let g:NERDTreeShowBookmarks=1
 let g:nerdtree_tabs_focus_on_files=1
 let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
-let g:NERDTreeWinSize = 50
+let g:NERDTreeWinSize = 30
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 nnoremap <silent> <F2> :NERDTreeFind<CR>
 nmap <leader>ne :NERDTreeToggle<cr>
 
 " grep.vim
-nnoremap <silent> <leader>f :Rgrep<CR>
+"nnoremap <silent> <leader>f :Rgrep<CR>
 let Grep_Default_Options = '-IR'
 let Grep_Skip_Files = '*.log *.db'
-let Grep_Skip_Dirs = '.git node_modules'
+let Grep_Skip_Dirs = '.git node_modules bower_components'
 
-map <Leader>f :CtrlP<cr>
+nnoremap <silent> <leader>f :CtrlP<CR>
 
 " ctrlp config
 let g:ctrlp_map = '<leader>f'
@@ -485,7 +485,6 @@ noremap <leader>c :bd<CR>
 
 "" Clean search (highlight)
 nnoremap <silent> <leader><space> :noh<cr>
-nmap <Leader>h :nohlsearch
 
 "" Switching windows
 noremap <C-j> <C-w>j
@@ -522,7 +521,7 @@ let g:javascript_enable_domhtmlcss = 1
 " vim-javascript
 augroup vimrc-javascript
   autocmd!
-  autocmd FileType javascript set tabstop=4|set shiftwidth=4|set expandtab softtabstop=4
+  autocmd FileType javascript set tabstop=2|set shiftwidth=2|set expandtab softtabstop=2
 augroup END
 
 
@@ -551,6 +550,7 @@ let g:jedi#smart_auto_mappings = 0
 
 " syntastic
 let g:syntastic_python_checkers=['python', 'flake8']
+let g:syntastic_javascript_checkers=['jshint']
 
 " vim-airline
 let g:airline#extensions#virtualenv#enabled = 1
