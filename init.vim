@@ -50,6 +50,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'neomake/neomake'
 Plug 'editorconfig/editorconfig-vim'
 
+Plug 'ervandew/supertab'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'terryma/vim-multiple-cursors'
@@ -94,8 +95,6 @@ Plug 'tomasr/molokai'
 
 " elixir
 Plug 'elixir-lang/vim-elixir'
-"Plug 'carlosgaldino/elixir-snippets'
-
 
 " html
 "" HTML Bundle
@@ -103,7 +102,6 @@ Plug 'hail2u/vim-css3-syntax'
 Plug 'gorodinskiy/vim-coloresque'
 Plug 'tpope/vim-haml'
 Plug 'mattn/emmet-vim'
-
 
 " javascript
 "" Javascript Bundle
@@ -434,10 +432,17 @@ cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>e :FZF -m<CR>
 
-" snippets
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_add_preview_to_completeopt=0
+let g:ycm_confirm_extra_conf=0
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" UltiSnips triggering
+let g:UltiSnipsExpandTrigger = '<C-j>'
+let g:UltiSnipsJumpForwardTrigger = '<C-j>'
+let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 let g:UltiSnipsEditSplit="vertical"
 
 " syntastic
@@ -533,8 +538,8 @@ augroup END
 augroup vimrc-python
   autocmd!
   autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=79
-      \ formatoptions+=croq softtabstop=4
-      \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
+        \ formatoptions+=croq softtabstop=4
+        \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 augroup END
 
 " jedi-vim
@@ -573,15 +578,15 @@ augroup vimrc-ruby
 augroup END
 
 let g:tagbar_type_ruby = {
-    \ 'kinds' : [
-        \ 'm:modules',
-        \ 'c:classes',
-        \ 'd:describes',
-        \ 'C:contexts',
-        \ 'f:methods',
-        \ 'F:singleton methods'
-    \ ]
-\ }
+      \ 'kinds' : [
+      \ 'm:modules',
+      \ 'c:classes',
+      \ 'd:describes',
+      \ 'C:contexts',
+      \ 'f:methods',
+      \ 'F:singleton methods'
+      \ ]
+      \ }
 
 " RSpec.vim mappings
 map <Leader>t :call RunCurrentSpecFile()<CR>
@@ -671,7 +676,6 @@ map <leader>a :Ag!<space>
 "*****************************************************************************
 
 set history=500                " keep 500 lines of command line history
-set ruler                      " show the cursor position all the time
 set showcmd                    " display incomplete commands
 set autoindent
 set ts=2
@@ -680,22 +684,13 @@ set showmatch
 set nowrap
 set backupdir=~/.tmp
 set directory=~/.tmp " Don't clutter my dirs up with swp and tmp files
-set autoread
 set wmh=0
 set viminfo+=!
-set guioptions-=T
-set guifont=Triskweline_10:h10
 set et
-set sw=2
 set vb
 set smarttab
-set incsearch
-set hlsearch
-set ignorecase smartcase
-set laststatus=2  " Always show status line.
 set relativenumber
 set gdefault " assume the /g flag on :s substitutions to replace all matches in a line
-set scrolloff=1
 set lazyredraw " Don't redraw screen when running macros.
 set splitbelow
 set splitright
