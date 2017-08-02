@@ -51,6 +51,7 @@ Plug 'neomake/neomake'
 Plug 'editorconfig/editorconfig-vim'
 
 Plug 'ervandew/supertab'
+Plug 'chaoren/vim-wordmotion'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'terryma/vim-multiple-cursors'
