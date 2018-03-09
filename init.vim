@@ -10,7 +10,7 @@ endif
 let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
 
 let g:vim_bootstrap_langs = "elixir,html,javascript,php,python,ruby"
-let g:vim_bootstrap_editor = "nvim"				" nvim or vim
+let g:vim_bootstrap_editor = "nvim"       " nvim or vim
 
 if !filereadable(vimplug_exists)
   if !executable("curl")
@@ -44,11 +44,13 @@ Plug 'bronson/vim-trailing-whitespace'
 Plug 'Raimondi/delimitMate'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/syntastic'
+Plug 'davidosomething/syntastic-hbstidy'
 Plug 'Yggdroot/indentLine'
 Plug 'avelino/vim-bootstrap-updater'
 Plug 'sheerun/vim-polyglot'
 Plug 'neomake/neomake'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'junegunn/goyo.vim'
 
 Plug 'ervandew/supertab'
 Plug 'chaoren/vim-wordmotion'
@@ -103,6 +105,7 @@ Plug 'hail2u/vim-css3-syntax'
 Plug 'gorodinskiy/vim-coloresque'
 Plug 'tpope/vim-haml'
 Plug 'mattn/emmet-vim'
+Plug 'digitaltoad/vim-pug'
 
 " javascript
 "" Javascript Bundle
@@ -164,7 +167,7 @@ set backspace=indent,eol,start
 
 "" Tabs. May be overriten by autocmd rules
 set tabstop=2
-set softtabstop=0
+set softtabstop=2
 set shiftwidth=2
 set expandtab
 
@@ -311,7 +314,7 @@ nnoremap <silent> <leader>f :CtrlP<CR>
 let g:ctrlp_map = '<leader>f'
 let g:ctrlp_use_caching = 0
 let g:ctrlp_max_files = 0
-let g:ctrlp_max_height = 15
+let g:ctrlp_max_height = 25
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_match_window_reversed = 0
 let g:ctrlp_custom_ignore = '\v[\/]\.(DS_Store|git|hg|svn|optimized|compiled|node_modules|bower_components|closure-library|closure-compiler|closure-templates)$'
@@ -390,6 +393,10 @@ noremap <Leader>gs :Gstatus<CR>
 noremap <Leader>gb :Gblame<CR>
 noremap <Leader>gd :Gvdiff<CR>
 noremap <Leader>gr :Gremove<CR>
+
+"" Goyo
+noremap <Leader>go :Goyo<CR>
+noremap <Leader>gof :Goyo!<CR>
 
 " session management
 nnoremap <leader>so :OpenSession<Space>
@@ -558,6 +565,17 @@ let g:jedi#smart_auto_mappings = 0
 let g:syntastic_python_checkers=['python', 'flake8']
 let g:syntastic_javascript_checkers=['eslint']
 
+"
+" Map some filetypes, e.g. turn off html checkers on handlebars (I'm using my
+" hbstidy instead of html tidy)
+let g:syntastic_filetype_map = {
+      \   'html.handlebars': 'handlebars',
+      \ }
+
+" Use these checkers (handlebars is a different checker, not required for the
+" hbstidy plugin)
+let g:syntastic_handlebars_checkers  = ['handlebars', 'hbstidy']
+
 " vim-airline
 let g:airline#extensions#virtualenv#enabled = 1
 
@@ -668,7 +686,7 @@ endif
 "*****************************************************************************
 
 map <Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>
-map <Leader>vi :tabe ~/.vimrc<CR>
+map <Leader>vi :tabe ~/.config/nvim/init.vim<CR>
 map <leader>a :Ag!<space>
 
 
@@ -736,3 +754,4 @@ imap <C-v> <CR><Esc>O
 
 " Disable tmux navigator when zooming the Vim pane
 let g:tmux_navigator_disable_when_zoomed = 1
+
