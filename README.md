@@ -6,9 +6,11 @@ I'm also a pretty aggressive aliaser. You might find a few you like in [zsh/alia
 
 ## Installation
 
-  git clone git://github.com/laantorchaweb/dotfiles ~/.dotfiles
-  cd ~/.dotfiles
-  rake install
+  ```git clone git://github.com/laantorchaweb/dotfiles ~/.dotfiles```
+  
+  ```cd ~/.dotfiles```
+  
+  ```rake install```
 
   Vim plugins are managed through vundle. You'll need to install vundle to get them.
 
