@@ -35,11 +35,11 @@ stty stop undef
 # RVM
 #[[ -s "/Users/ben/.rvm/scripts/rvm" ]] && source "/Users/ben/.rvm/scripts/rvm"
 
+export LC_ALL=en_US.UTF-8
 # Sourcing of other files
 export ZSH=$HOME/.oh-my-zsh
 # ZSH_THEME="avit"
 ZSH_THEME="robbyrussell"
-
 source $HOME/.dotfiles/zsh/aliases
 source $HOME/.dotfiles/zsh/functions
 source $HOME/.dotfiles/zsh/prompt
@@ -48,7 +48,6 @@ source $HOME/.dotfiles/zsh/z
 
 #export NVM_DIR="$HOME/.nvm"
 #[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-
 nvm() {
     unset -f nvm
     export NVM_DIR=~/.nvm
@@ -116,7 +115,7 @@ plugins=()
 # User configuration
 
 #export PATH="$HOME/.composer/vendor/bin:$PATH"
-export PATH="$HOME/.node/bin:$PATH"
+#export PATH="$HOME/.node/bin:$PATH"
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/sebastianb/.cabal/bin:bin:/Users/sebastianb/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.composer/vendor/bin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.rbenv/shims:$PATH"
@@ -156,8 +155,42 @@ export PATH=$PATH:~/.cabal/bin
 source $ZSH/oh-my-zsh.sh
 export PATH="$HOME/.bin:$PATH"
 
-export PATH=$PATH:bin:~/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.rvm/bin
+#export PATH=$PATH:bin:~/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.rvm/bin
 
-export NVM_DIR="/Users/sebastianb/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# nvm
+#unset npm_config_prefix # Add this line
+#export NVM_DIR="$HOME/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+#
+export TTC_BOTS='tinycarebot,selfcare_bot,magicrealismbot'
+export TTC_SAY_BOX='parrot'
+
+# List of folders to look into for `git` commits, comma separated.
+export TTC_REPOS='/Users/sebastianb/Documents/projects'
+export TTC_REPOS_DEPTH=2
+
+export TTC_WEATHER='Buenos Aires, Argentina'
+export TTC_CELSIUS=true
+
+export TTC_APIKEYS=true
+export TTC_UPDATE_INTERVAL=20
+export TTC_TERMINAL_TITLE=false
+
+# Twitter api keys
+export TTC_CONSUMER_KEY='CDaOD3tpdnMvSjtVGGOBxRpWh'
+export TTC_CONSUMER_SECRET='mLfuHz8JunS1XGjKEGwnuuCPs2a6E6LovcFpyRiwAjzcYOwkfe'
+export TTC_ACCESS_TOKEN='255638513-fPoKzBn5JrRdTmW2cXOyeFf3AfOAGx5ygoJn5GSt'
+export TTC_ACCESS_TOKEN_SECRET='VxuE1k74pvKPAsrvxtRjfbz8udzGLa6KLF525Hje3Lww0'
+
+# Note: in tiny-terminal-care < 1.0.7, the recommended variables for the Twitter
+# API keys were the ones before. As of 1.0.8, they are deprecated
+# (because the names are too generic), but will still be supported
+# until the next major version.
+export CONSUMER_KEY='...'
+export CONSUMER_SECRET='...'
+export ACCESS_TOKEN='...'
+export ACCESS_TOKEN_SECRET='...'
+
+export TTC_POMODORO=25
+export TTC_BREAK=5

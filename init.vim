@@ -40,7 +40,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-scripts/grep.vim'
 Plug 'vim-scripts/CSApprox'
-Plug 'bronson/vim-trailing-whitespace'
+Plug 'ntpeters/vim-better-whitespace'
 Plug 'Raimondi/delimitMate'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/syntastic'
@@ -61,6 +61,14 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tmux-plugins/vim-tmux-focus-events'
+" Plug 'HerringtonDarkholme/yats.vim'
+" Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+"
+" For async completion
+" Plug 'Shougo/deoplete.nvim'
+
+" For Denite features
+Plug 'Shougo/denite.nvim'
 
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
@@ -95,6 +103,21 @@ Plug 'tomasr/molokai'
 "*****************************************************************************
 "" Custom bundles
 "*****************************************************************************
+"Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plug 'w0rp/ale'
+
+let g:ale_fixers = {
+\   'javascript': ['prettier'],
+\   'css': ['prettier'],
+\}
+let g:ale_linters_explicit = 1
+let g:ale_fix_on_save = 1
+let b:ale_linters = ['flow-language-server', 'eslint']
+
+" Or in ~/.vim/vimrc:
+let g:ale_linters = {
+\   'javascript': ['flow-language-server'],
+\}
 
 " elixir
 Plug 'elixir-lang/vim-elixir'
@@ -131,8 +154,19 @@ Plug 'thoughtbot/vim-rspec'
 Plug 'ecomba/vim-ruby-refactoring'
 
 " utils
-Plug 'Valloric/YouCompleteMe'
+" Plug 'Valloric/YouCompleteMe'
 Plug 'ctrlpvim/ctrlp.vim'
+
+" Use release branch
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Or latest tag
+" Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
+" Or build from source code by use yarn: https://yarnpkg.com
+" Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+" Plug 'ryanolsonx/vim-lsp-typescript'
 
 " themes
 Plug 'kristijanhusak/vim-hybrid-material'
@@ -150,7 +184,9 @@ call plug#end()
 " Required:
 filetype plugin indent on
 
+" Enable deoplete at startup
 
+" let g:deoplete#enable_at_startup = 1
 "*****************************************************************************
 "" Basic Setup
 "*****************************************************************************"
@@ -176,6 +212,9 @@ let mapleader=','
 
 "" Use CTRL+Z for Emmet
 let g:user_emmet_leader_key='<C-Z>'
+"
+"" JSX files that have js extensions
+let g:jsx_ext_required = 0
 
 "" Enable hidden buffers
 set hidden
@@ -441,10 +480,10 @@ nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>e :FZF -m<CR>
 
 " make YCM compatible with UltiSnips (using supertab)
-let g:ycm_add_preview_to_completeopt=0
-let g:ycm_confirm_extra_conf=0
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+" let g:ycm_add_preview_to_completeopt=0
+" let g:ycm_confirm_extra_conf=0
+" let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+" let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
 
 " UltiSnips triggering
@@ -461,6 +500,8 @@ let g:syntastic_style_error_symbol = '✗'
 let g:syntastic_style_warning_symbol = '⚠'
 let g:syntastic_auto_loc_list=1
 let g:syntastic_aggregate_errors = 1
+
+"let g:prettier#config#parser = 'babylon'
 
 " Tagbar
 nmap <silent> <F4> :TagbarToggle<CR>
@@ -735,6 +776,9 @@ map K <Nop>
 
 " Don't display whitespace
 au BufNewFile,BufRead *.txt setlocal nolist
+
+let g:better_whitespace_enabled=1
+" let g:strip_whitespace_on_save=1
 
 " Ignore stuff that can't be opened
 set wildignore+=*/tmp/*,*.o,*.so,*.swp,*.zip,*/node_modules/*,*/bower_components/*
