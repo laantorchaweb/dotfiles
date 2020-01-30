@@ -8,6 +8,7 @@ fi
 
 alias v='nvim'
 alias vi='nvim'
+alias g='git status'
 alias vim='nvim'
 alias ack='ag'
 alias sl='sails lift'
