@@ -31,8 +31,6 @@
   enabled = 1
 [github]
   user = laantorchaweb
-[merge]
-  ff = only
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
