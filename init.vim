@@ -62,7 +62,6 @@ Plug 'tmux-plugins/vim-tmux'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 " Plug 'HerringtonDarkholme/yats.vim'
-" Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 "
 " For async completion
 " Plug 'Shougo/deoplete.nvim'
@@ -110,14 +109,21 @@ let g:ale_fixers = {
 \   'javascript': ['prettier'],
 \   'css': ['prettier'],
 \}
-let g:ale_linters_explicit = 1
-let g:ale_fix_on_save = 1
-let b:ale_linters = ['flow-language-server', 'eslint']
 
-" Or in ~/.vim/vimrc:
+let g:ale_fix_on_save = 1
+let g:ale_linters_explicit = 0
 let g:ale_linters = {
-\   'javascript': ['flow-language-server'],
+\   'javascript': ['flow-language-server', 'eslint', 'flow'],
 \}
+
+let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#tabline#enabled = 0
+let g:airline#extensions#tabline#show_buffers = 0
+let g:airline#extensions#tabline#show_tab_nr = 0
+let g:airline#extensions#tabline#show_tab_type = 1
+let g:airline#extensions#tabline#show_tab_count = 0
+let g:airline#extensions#tabline#tabs_label = 'FILES'
+let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 " elixir
 Plug 'elixir-lang/vim-elixir'
@@ -133,7 +139,6 @@ Plug 'digitaltoad/vim-pug'
 " javascript
 "" Javascript Bundle
 Plug 'jelera/vim-javascript-syntax'
-
 
 " php
 "" PHP Bundle
@@ -154,19 +159,13 @@ Plug 'thoughtbot/vim-rspec'
 Plug 'ecomba/vim-ruby-refactoring'
 
 " utils
-" Plug 'Valloric/YouCompleteMe'
 Plug 'ctrlpvim/ctrlp.vim'
 
 " Use release branch
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Or latest tag
-" Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
-" Or build from source code by use yarn: https://yarnpkg.com
-" Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
-" Plug 'ryanolsonx/vim-lsp-typescript'
 
 " themes
 Plug 'kristijanhusak/vim-hybrid-material'
@@ -498,8 +497,22 @@ let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_style_error_symbol = '✗'
 let g:syntastic_style_warning_symbol = '⚠'
-let g:syntastic_auto_loc_list=1
+let g:syntastic_auto_loc_list=0
 let g:syntastic_aggregate_errors = 1
+
+function! ToggleSyntastic()
+    for i in range(1, winnr('$'))
+        let bnum = winbufnr(i)
+        if getbufvar(bnum, '&buftype') == 'quickfix'
+            lclose
+            return
+        endif
+    endfor
+    SyntasticCheck
+endfunction
+
+noremap <leader>s :call ToggleSyntastic()<CR>
+
 
 "let g:prettier#config#parser = 'babylon'
 
@@ -649,10 +662,10 @@ let g:tagbar_type_ruby = {
       \ }
 
 " RSpec.vim mappings
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
+"map <Leader>t :call RunCurrentSpecFile()<CR>
+"map <Leader>s :call RunNearestSpec()<CR>
+"map <Leader>l :call RunLastSpec()<CR>
+"map <Leader>a :call RunAllSpecs()<CR>
 
 " For ruby refactory
 if has('nvim')
