@@ -162,35 +162,3 @@ export PATH="$HOME/.bin:$PATH"
 #export NVM_DIR="$HOME/.nvm"
 #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 #[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-#
-export TTC_BOTS='tinycarebot,selfcare_bot,magicrealismbot'
-export TTC_SAY_BOX='parrot'
-
-# List of folders to look into for `git` commits, comma separated.
-export TTC_REPOS='/Users/sebastianb/Documents/projects'
-export TTC_REPOS_DEPTH=2
-
-export TTC_WEATHER='Buenos Aires, Argentina'
-export TTC_CELSIUS=true
-
-export TTC_APIKEYS=true
-export TTC_UPDATE_INTERVAL=20
-export TTC_TERMINAL_TITLE=false
-
-# Twitter api keys
-export TTC_CONSUMER_KEY='CDaOD3tpdnMvSjtVGGOBxRpWh'
-export TTC_CONSUMER_SECRET='mLfuHz8JunS1XGjKEGwnuuCPs2a6E6LovcFpyRiwAjzcYOwkfe'
-export TTC_ACCESS_TOKEN='255638513-fPoKzBn5JrRdTmW2cXOyeFf3AfOAGx5ygoJn5GSt'
-export TTC_ACCESS_TOKEN_SECRET='VxuE1k74pvKPAsrvxtRjfbz8udzGLa6KLF525Hje3Lww0'
-
-# Note: in tiny-terminal-care < 1.0.7, the recommended variables for the Twitter
-# API keys were the ones before. As of 1.0.8, they are deprecated
-# (because the names are too generic), but will still be supported
-# until the next major version.
-export CONSUMER_KEY='...'
-export CONSUMER_SECRET='...'
-export ACCESS_TOKEN='...'
-export ACCESS_TOKEN_SECRET='...'
-
-export TTC_POMODORO=25
-export TTC_BREAK=5
