@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/sebastianb/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -27,19 +27,14 @@ SAVEHIST=20000
 # Enable completion
 autoload -U compinit
 compinit
-# Disable flow control commands (keeps C-s from freezing everything) stty start undef stty stop undef
 
-# Disable flow control commands (keeps C-s from freezing everything)
+# Disable flow control commands (keeps C-s from freezing everything) stty start undef stty stop undef
 stty start undef
 stty stop undef
-# RVM
-#[[ -s "/Users/ben/.rvm/scripts/rvm" ]] && source "/Users/ben/.rvm/scripts/rvm"
 
 export LC_ALL=en_US.UTF-8
+
 # Sourcing of other files
-export ZSH=$HOME/.oh-my-zsh
-# ZSH_THEME="avit"
-ZSH_THEME="robbyrussell"
 source $HOME/.dotfiles/zsh/aliases
 source $HOME/.dotfiles/zsh/functions
 source $HOME/.dotfiles/zsh/prompt
@@ -92,15 +87,12 @@ source $HOME/.dotfiles/zsh/z
 plugins=()
 # User configuration
 
-#export PATH="$HOME/.composer/vendor/bin:$PATH"
-#export PATH="$HOME/.node/bin:$PATH"
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/sebastianb/.cabal/bin:bin:/Users/sebastianb/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.composer/vendor/bin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.rbenv/shims:$PATH"
-eval "$(rbenv init - zsh)"
 export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-# export MANPATH="/usr/local/man:$MANPATH"
+eval "$(rbenv init - zsh)"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -127,23 +119,19 @@ source $ZSH/oh-my-zsh.sh
 #
 # Example aliases
 alias zshconfig="vim ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 # Add cabal bin
 export PATH=$PATH:~/.cabal/bin
 source $ZSH/oh-my-zsh.sh
 export PATH="$HOME/.bin:$PATH"
 
-#export PATH=$PATH:bin:~/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.rvm/bin
-
 # nvm
 unset npm_config_prefix # Add this line
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 nvm() {
     unset -f nvm
     export NVM_DIR=~/.nvm
@@ -167,3 +155,5 @@ npm() {
 export PATH="/usr/local/opt/postgresql@11/bin:$PATH"
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 export PATH="/usr/local/opt/postgresql@11/bin:$PATH"
+export PATH="/usr/local/opt/luajit-openresty/bin:$PATH"
+export PATH=$HOME/.config/nvcode/utils/bin:$PATH

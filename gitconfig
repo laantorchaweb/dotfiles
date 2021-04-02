@@ -10,11 +10,11 @@
   branch = auto
 
 [color "diff"]
-  meta = yellow 
+  meta = yellow
 
 [core]
 	excludesfile = /Users/sebastianb/.gitignore_global
-  editor = vim --noplugin
+  editor = nvim
 [apply]
   whitespace = nowarn
 

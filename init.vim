@@ -32,7 +32,6 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 "" Plug install packages
 "*****************************************************************************
 Plug 'scrooloose/nerdtree'
-Plug 'jistr/vim-nerdtree-tabs'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
@@ -43,8 +42,6 @@ Plug 'vim-scripts/CSApprox'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'Raimondi/delimitMate'
 Plug 'majutsushi/tagbar'
-Plug 'scrooloose/syntastic'
-Plug 'davidosomething/syntastic-hbstidy'
 Plug 'Yggdroot/indentLine'
 Plug 'avelino/vim-bootstrap-updater'
 Plug 'sheerun/vim-polyglot'
@@ -65,7 +62,9 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 "
 " For async completion
 " Plug 'Shougo/deoplete.nvim'
-
+" Plug 'nvim-lua/popup.nvim'
+" Plug 'nvim-lua/plenary.nvim'
+" Plug 'nvim-telescope/telescope.nvim'
 " For Denite features
 Plug 'Shougo/denite.nvim'
 
@@ -102,18 +101,25 @@ Plug 'tomasr/molokai'
 "*****************************************************************************
 "" Custom bundles
 "*****************************************************************************
-"Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 
-let g:ale_fixers = {
-\   'javascript': ['prettier'],
-\   'css': ['prettier'],
-\}
+highlight clear ALEErrorSign
+highlight clear ALEWarningSign
+
+let g:ale_sign_error = "💣"
+let g:ale_sign_warning = "⚠️"
 
 let g:ale_fix_on_save = 1
+let g:ale_lint_on_enter = 1
 let g:ale_linters_explicit = 0
 let g:ale_linters = {
 \   'javascript': ['flow-language-server', 'eslint', 'flow'],
+\   'css': ['prettier'],
+\   'ruby': ['rubocop'],
+\}
+let g:ale_fixers = {
+\   'javascript': ['prettier', 'eslint'],
+\   'css': ['prettier'],
 \}
 
 let g:airline#extensions#ale#enabled = 1
@@ -202,7 +208,6 @@ set backspace=indent,eol,start
 
 "" Tabs. May be overriten by autocmd rules
 set tabstop=2
-set softtabstop=2
 set shiftwidth=2
 set expandtab
 
@@ -307,7 +312,6 @@ endif
 
 " vim-airline
 let g:airline_theme = "hybrid"
-let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
@@ -478,11 +482,6 @@ cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>e :FZF -m<CR>
 
-" make YCM compatible with UltiSnips (using supertab)
-" let g:ycm_add_preview_to_completeopt=0
-" let g:ycm_confirm_extra_conf=0
-" let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-" let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
 
 " UltiSnips triggering
@@ -490,31 +489,6 @@ let g:UltiSnipsExpandTrigger = '<C-j>'
 let g:UltiSnipsJumpForwardTrigger = '<C-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 let g:UltiSnipsEditSplit="vertical"
-
-" syntastic
-let g:syntastic_always_populate_loc_list=1
-let g:syntastic_error_symbol='✗'
-let g:syntastic_warning_symbol='⚠'
-let g:syntastic_style_error_symbol = '✗'
-let g:syntastic_style_warning_symbol = '⚠'
-let g:syntastic_auto_loc_list=0
-let g:syntastic_aggregate_errors = 1
-
-function! ToggleSyntastic()
-    for i in range(1, winnr('$'))
-        let bnum = winbufnr(i)
-        if getbufvar(bnum, '&buftype') == 'quickfix'
-            lclose
-            return
-        endif
-    endfor
-    SyntasticCheck
-endfunction
-
-noremap <leader>s :call ToggleSyntastic()<CR>
-
-
-"let g:prettier#config#parser = 'babylon'
 
 " Tagbar
 nmap <silent> <F4> :TagbarToggle<CR>
