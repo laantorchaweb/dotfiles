@@ -1,129 +1,91 @@
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-# ZSH_THEME="daveverwer"
-ZSH_THEME="robbyrussell"
+#!/bin/zsh
 
-# Base16 Shell
+fpath=($DOTFILES/zsh/plugins $fpath)
+
+#-- OPTIONS --#
+
+setopt CORRECT                   # Spelling correctionsetopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
+
+
+#-- THEME --#
+
+ZSH_THEME=$ZSH_THEME
 BASE16_SHELL="$HOME/.config/base16-shell/base16-material.dark.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
-# Allow completing of the remainder of a command
-bindkey "^N" insert-last-word
+
+#-- SOURCE CONFIG FILES --#
 #
-# Show contents of directory after cd-ing into it
+source $DOTFILES/zsh/aliases
+source $DOTFILES/zsh/functions
+source $DOTFILES/zsh/prompt
+source $DOTFILES/zsh/z
+source $DOTFILES/zsh/completion
+
+
+#-- VI MODE --#
+set -o vi
+bindkey -v
+export KEYTIMEOUT=1
+
+autoload -Uz cursor_mode; cursor_mode # change cursor in vi mode
+
+
+#-- HISTORY --#
+
+HISTSIZE=$HISTSIZE
+HISTFILE=$HISTFILE
+SAVEHIST=$SAVEHIST
+
+setopt SHARE_HISTORY             # Share history between all sessions.
+setopt HIST_EXPIRE_DUPS_FIRST    # Expire a duplicate event first when trimming history.
+setopt HIST_IGNORE_DUPS          # Do not record an event that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS      # Delete an old recorded event if a new event is a duplicate.
+setopt HIST_FIND_NO_DUPS         # Do not display a previously found event.
+setopt HIST_IGNORE_SPACE         # Do not record an event starting with a space.
+setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history file.
+setopt HIST_VERIFY               # Do not execute immediately upon history expansion.
+
+
+#-- FZF --#
+
+if [ $(command -v "fzf") ]; then
+    source /usr/local/opt/fzf/shell/completion.zsh
+    source /usr/local/opt/fzf/shell/key-bindings.zsh
+    source $DOTFILES/zsh/scripts_fzf.zsh # fzf Scripts
+
+    # Search with fzf and open selected file with Vim
+    # bindkey -s '^v' 'vim $(fzf);^M'
+fi
+
+
+#-- USER CONFIGURATION --#
+
 chpwd() {
-  ls -lrthG
+  ls -lrthG      # show contents of directory after cd-ing into it
 }
 
-# Save a ton of history
-HISTSIZE=20000
-HISTFILE=~/.zsh_history
-SAVEHIST=20000
+bindkey "^N" insert-last-word      # allow completing of the remainder of a command
 
-# Enable completion
+# enable completion
 autoload -U compinit
 compinit
 
-# Disable flow control commands (keeps C-s from freezing everything) stty start undef stty stop undef
-stty start undef
-stty stop undef
+stty start undef     # disable flow control commands
+stty stop undef      # (keeps C-s from freezing everything)
 
 export LC_ALL=en_US.UTF-8
 
-# Sourcing of other files
-source $HOME/.dotfiles/zsh/aliases
-source $HOME/.dotfiles/zsh/functions
-source $HOME/.dotfiles/zsh/prompt
-source $HOME/.dotfiles/zsh/z
-# source $(brew --prefix nvm)/nvm.sh
+plugins=(
+    zsh-autosuggestions
+)
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=$ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE
 
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-#plugins=(git rails ruby npm)
-plugins=()
-# User configuration
-
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/sebastianb/.cabal/bin:bin:/Users/sebastianb/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.composer/vendor/bin:$PATH"
-export PATH="$HOME/.rbenv/bin:$PATH"
-export PATH="$HOME/.rbenv/shims:$PATH"
-export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 eval "$(rbenv init - zsh)"
 
 source $ZSH/oh-my-zsh.sh
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/gitlab"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-alias zshconfig="vim ~/.zshrc"
-#
-# Add cabal bin
-export PATH=$PATH:~/.cabal/bin
-source $ZSH/oh-my-zsh.sh
-export PATH="$HOME/.bin:$PATH"
 
 # nvm
 unset npm_config_prefix # Add this line
@@ -152,8 +114,5 @@ npm() {
     [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
     npm "$@"
 }
-export PATH="/usr/local/opt/postgresql@11/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/postgresql@11/bin:$PATH"
-export PATH="/usr/local/opt/luajit-openresty/bin:$PATH"
-export PATH=$HOME/.config/nvcode/utils/bin:$PATH
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
