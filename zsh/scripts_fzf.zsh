@@ -43,10 +43,12 @@ fstash() {
     fzf-tmux --ansi --no-sort --query="$q" --print-query \
         --expect=ctrl-d,ctrl-b);
   do
-    mapfile -t out <<< "$out"
-    q="${out[0]}"
-    k="${out[1]}"
-    sha="${out[-1]}"
+    IFS=$'\n'; set -f
+    lines=($(<<< "$out"))
+    unset IFS; set +f
+    q="${lines[0]}"
+    k="${lines[1]}"
+    sha="${lines[-1]}"
     sha="${sha%% *}"
     [[ -z "$sha" ]] && continue
     if [[ "$k" == 'ctrl-d' ]]; then
