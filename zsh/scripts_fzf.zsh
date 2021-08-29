@@ -1,5 +1,16 @@
 #!/bin/zsh
 
+# bind-key s run "tmux new-window 'bash -ci fs'"
+fst() {
+	local -r fmt='#{session_id}:|#S|(#{session_attached} attached)'
+	{ tmux display-message -p -F "$fmt" && tmux list-sessions -F "$fmt"; } \
+		| awk '!seen[$1]++' \
+		| column -t -s'|' \
+		| fzf -q '$' --reverse --prompt 'switch session: ' -1 \
+		| cut -d':' -f1 \
+		| xargs tmux switch-client -t
+}
+
 # checkout git branch (including remote branches) with FZF
 fgco() {
   local branches=$(git branch --all | grep -v HEAD) &&
