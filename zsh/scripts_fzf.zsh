@@ -6,7 +6,7 @@ fst() {
 	{ tmux display-message -p -F "$fmt" && tmux list-sessions -F "$fmt"; } \
 		| awk '!seen[$1]++' \
 		| column -t -s'|' \
-		| fzf -q '$' --reverse --prompt 'switch session: ' -1 \
+		| fzf-tmux -q '$' --reverse --prompt 'switch session: ' -1 \
 		| cut -d':' -f1 \
 		| xargs tmux switch-client -t
 }
@@ -23,7 +23,7 @@ fgco() {
 fglog() {
   git log --graph --color=always \
       --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
-  fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
+  fzf-tmux --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
       --bind "ctrl-m:execute:
                 (grep -o '[a-f0-9]\{7\}' | head -1 |
                 xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
@@ -40,7 +40,7 @@ fstash() {
   local out q k sha
   while out=$(
     git stash list --pretty="%C(yellow)%h %>(14)%Cgreen%cr %C(blue)%gs" |
-    fzf --ansi --no-sort --query="$q" --print-query \
+    fzf-tmux --ansi --no-sort --query="$q" --print-query \
         --expect=ctrl-d,ctrl-b);
   do
     mapfile -t out <<< "$out"
@@ -119,5 +119,5 @@ fd() {
     # alias d='dirs -v'
     # for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
-    d | fzf --height="20%" | cut -f 1 | source /dev/stdin
+    d | fzf-tmux --height="20%" | cut -f 1 | source /dev/stdin
 }
