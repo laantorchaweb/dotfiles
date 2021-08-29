@@ -4,7 +4,8 @@ fpath=($DOTFILES/zsh/plugins $fpath)
 
 #-- OPTIONS --#
 
-setopt CORRECT                   # Spelling correctionsetopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
+setopt CORRECT                   # Spelling correction
+setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
 
 
 #-- THEME --#
@@ -74,7 +75,8 @@ chpwd() {
   ls -lrthG      # show contents of directory after cd-ing into it
 }
 
-bindkey "^N" insert-last-word      # allow completing of the remainder of a command
+bindkey "^N" insert-last-word       # allow completing of the remainder of a command
+bindkey "^E" end-of-line
 
 # enable completion
 autoload -U compinit
@@ -87,7 +89,9 @@ export LC_ALL=en_US.UTF-8
 
 plugins=(
     zsh-autosuggestions
+    zsh-syntax-highlighting
 )
+
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=$ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE
 
