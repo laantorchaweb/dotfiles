@@ -58,6 +58,15 @@ if [ $(command -v "fzf") ]; then
     # bindkey -s '^v' 'vim $(fzf);^M'
 fi
 
+# determines search program for fzf
+if type ag &> /dev/null; then
+    export FZF_DEFAULT_COMMAND='ag -p ~/.gitignore -g ""'
+fi
+
+# prefer rg over ag
+if type rg &> /dev/null; then
+    export FZF_DEFAULT_COMMAND='rg --files --hidden'
+fi
 
 #-- USER CONFIGURATION --#
 
