@@ -89,6 +89,7 @@ alias kalidocker='docker run -t -i kalilinux/kali-linux-docker /bin/bash'
 alias cl='clear && l'
 alias ack='ag'
 alias aliases="nvim $DOTFILES/zsh/aliases"
+alias dotfiles="cd $DOTFILES"
 
 alias code="cd $HOME/Documents/projects && clear"
 alias tutos="cd $HOME/Documents/projects/tutorials && clear"
