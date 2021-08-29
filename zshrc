@@ -77,6 +77,8 @@ chpwd() {
 
 bindkey "^N" insert-last-word       # allow completing of the remainder of a command
 bindkey "^E" end-of-line
+bindkey -s '^o' 'nvim $(fzf-tmux)^M'
+bindkey -s '^s' 'fst ^M'
 
 # enable completion
 autoload -U compinit
