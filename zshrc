@@ -56,7 +56,7 @@ if [ $(command -v "fzf") ]; then
     source $DOTFILES/zsh/scripts_fzf.zsh # fzf Scripts
 
     # Search with fzf and open selected file with Vim
-    # bindkey -s '^v' 'vim $(fzf);^M'
+    # bindkey -s '^v' 'nvim $(fzf);^M'
 fi
 
 # determines search program for fzf
@@ -76,7 +76,7 @@ chpwd() {
 }
 
 bindkey "^N" insert-last-word       # allow completing of the remainder of a command
-bindkey "^E" end-of-line
+bindkey '^I'      autosuggest-accept
 bindkey -s '^o' 'nvim $(fzf-tmux)^M'
 bindkey -s '^s' 'fst ^M'
 
@@ -94,8 +94,9 @@ plugins=(
     zsh-syntax-highlighting
 )
 
-
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=$ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE
+ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(buffer-empty bracketed-paste accept-line push-line-or-edit)
+
 
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 eval "$(rbenv init - zsh)"
