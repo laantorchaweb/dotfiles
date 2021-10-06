@@ -75,8 +75,9 @@ chpwd() {
   ls -lrthG      # show contents of directory after cd-ing into it
 }
 
-bindkey "^N" insert-last-word       # allow completing of the remainder of a command
-bindkey '^I'      autosuggest-accept
+# bindkey '^N'      insert-last-word       # allow completing of the remainder of a command
+# bindkey '^I'      autosuggest-accept
+bindkey '^E'   autosuggest-accept
 bindkey -s '^o' 'nvim $(fzf-tmux)^M'
 bindkey -s '^s' 'fst ^M'
 
@@ -90,6 +91,7 @@ stty stop undef      # (keeps C-s from freezing everything)
 export LC_ALL=en_US.UTF-8
 
 plugins=(
+    zsh-navigation-tools
     zsh-autosuggestions
     zsh-syntax-highlighting
 )

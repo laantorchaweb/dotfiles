@@ -119,5 +119,5 @@ alias startpostgres='pg_ctl -D /usr/local/var/postgresql -l /usr/local/var/postg
 alias stoppostgres='pg_ctl -D /usr/local/var/postgresql -l /usr/local/var/postgresql/server.log stop'
 alias startelasticsearch='elasticsearch --config=/usr/local/opt/elasticsearch/config/elasticsearch.yml'
 
-alias nombom='npm cache clear && rm -rf node_modules npm install'
+alias nombom='npm cache clear && rm -rf node_modules && npm install'
 alias weather='curl http://wttr\.in/CABA,argentina'
