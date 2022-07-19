@@ -17,6 +17,7 @@ alias suspend='sudo pm-suspend'
 
 #-- ZSH --#
 alias d='dirs -v'
+alias cat='bat'
 # for index ({1..9}) alias "$index"="cd +${index}"; unset index # directory stack
 
 
@@ -93,6 +94,7 @@ alias aliases="nvim $DOTFILES/zsh/aliases"
 alias dotfiles="cd $DOTFILES"
 
 alias code="cd $HOME/Documents/projects && clear"
+alias work="cd $HOME/Developer/Work && clear"
 alias tutos="cd $HOME/Documents/projects/tutorials && clear"
 
 alias fs='foreman start'

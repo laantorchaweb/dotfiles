@@ -91,6 +91,7 @@ stty stop undef      # (keeps C-s from freezing everything)
 export LC_ALL=en_US.UTF-8
 
 plugins=(
+    vi-mode
     zsh-navigation-tools
     zsh-autosuggestions
     zsh-syntax-highlighting
@@ -101,7 +102,7 @@ ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(buffer-empty bracketed-paste accept-line push-li
 
 
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-eval "$(rbenv init - zsh)"
+# eval "$(rbenv init - zsh)"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -134,3 +135,5 @@ npm() {
 }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
