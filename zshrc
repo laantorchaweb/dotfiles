@@ -51,8 +51,8 @@ setopt HIST_VERIFY               # Do not execute immediately upon history expan
 #-- FZF --#
 
 if [ $(command -v "fzf") ]; then
-    source /usr/local/opt/fzf/shell/completion.zsh
-    source /usr/local/opt/fzf/shell/key-bindings.zsh
+    # source /usr/local/opt/fzf/shell/completion.zsh
+    # source /usr/local/opt/fzf/shell/key-bindings.zsh
     source $DOTFILES/zsh/scripts_fzf.zsh # fzf Scripts
 
     # Search with fzf and open selected file with Vim
