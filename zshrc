@@ -31,7 +31,7 @@ export KEYTIMEOUT=1
 
 autoload -Uz cursor_mode; cursor_mode # change cursor in vi mode
 
-export BAT_THEME="Catppuccin-mocha"
+export BAT_THEME="Catppuccin-macchiato"
 
 #-- HISTORY --#
 
