@@ -4,7 +4,7 @@ fpath=($DOTFILES/zsh/plugins $fpath)
 
 #-- OPTIONS --#
 
-setopt CORRECT                   # Spelling correction
+unsetopt correct
 setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
 
 
@@ -141,7 +141,5 @@ npm() {
 }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-export PATH=$PATH:$HOME/.spicetify
 
 . /opt/homebrew/opt/asdf/libexec/asdf.sh
