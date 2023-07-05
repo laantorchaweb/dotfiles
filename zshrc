@@ -58,6 +58,7 @@ if [ $(command -v "fzf") ]; then
 
     # Search with fzf and open selected file with Vim
     # bindkey -s '^v' 'nvim $(fzf);^M'
+    bindkey -s '^f' 'search;^M'
 fi
 
 # determines search program for fzf
@@ -97,6 +98,7 @@ stty stop undef      # (keeps C-s from freezing everything)
 export LC_ALL=en_US.UTF-8
 
 plugins=(
+    asdf
     vi-mode
     zsh-navigation-tools
     zsh-autosuggestions
@@ -142,4 +144,9 @@ npm() {
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+. $HOME/.asdf/asdf.sh
+
 . /opt/homebrew/opt/asdf/libexec/asdf.sh
+
+eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"

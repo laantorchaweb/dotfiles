@@ -106,6 +106,10 @@ alias cl='clear && l'
 alias ack='ag'
 alias aliases="nvim $DOTFILES/zsh/aliases"
 alias dotfiles="cd $DOTFILES"
+alias search="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}' | xargs nvim"
+
+alias lls="exa -l -g --icons --git"
+alias llt="exa -1 --icons --tree --git-ignore"
 
 alias code="cd $HOME/Documents/projects && clear"
 alias work="cd $HOME/Developer/Work && clear"
