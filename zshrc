@@ -146,7 +146,7 @@ npm() {
 
 . $HOME/.asdf/asdf.sh
 
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
-
+export PATH=$PATH:/Users/sebastianbaroni/.spicetify
+export PATH=$PATH:/usr/local/go/bin
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
