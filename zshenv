@@ -17,9 +17,6 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#608680"
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/sebastianb/.cabal/bin:bin:/Users/sebastianb/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.composer/vendor/bin:$PATH"
-export PATH="$HOME/.rbenv/bin:$PATH"
-export PATH="$HOME/.rbenv/shims:$PATH"
-export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 export PATH=$PATH:~/.cabal/bin
 export PATH="$HOME/.bin:$PATH"
 

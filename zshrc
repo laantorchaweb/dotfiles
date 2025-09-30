@@ -109,44 +109,44 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=$ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(buffer-empty bracketed-paste accept-line push-line-or-edit)
 
 
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+# export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 # eval "$(rbenv init - zsh)"
 
 source $ZSH/oh-my-zsh.sh
 
-# nvm
-unset npm_config_prefix # Add this line
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-nvm() {
-    unset -f nvm
-    export NVM_DIR=~/.nvm
-    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-    nvm "$@"
-}
-
-node() {
-    unset -f node
-    export NVM_DIR=~/.nvm
-    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-    node "$@"
-}
-
-npm() {
-    unset -f npm
-    export NVM_DIR=~/.nvm
-    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-    npm "$@"
-}
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-. $HOME/.asdf/asdf.sh
+# Add Homebrew binaries
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
 
-export PATH=$PATH:/Users/sebastianbaroni/.spicetify
-export PATH=$PATH:/usr/local/go/bin
+
+export PATH="$HOME/bin:$PATH"
+
+# Add Postgres app binaries
+export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
+
+# Add OpenSSL binaries
+export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"
+
+# Add Go binaries
+export PATH="$HOME/go/bin:$PATH"
+
+# Add Spicetify (Spotify customization tool)
+export PATH="$HOME/.spicetify:$PATH"
+
+# Add Kitty terminal binary
+export PATH="/Applications/kitty.app/Contents/MacOS:$PATH"
+
+# Add macOS system paths (keep these last)
+export PATH="$PATH:/System/Cryptexes/App/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+
+export RUBY_CONFIGURE_OPTS="--with-zlib-dir=$(brew --prefix zlib) --with-openssl-dir=$(brew --prefix openssl@1.1) --with-readline-dir=$(brew --prefix readline) --with-libyaml-dir=$(brew --prefix libyaml)"
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)" # Ruby 2.x–3.0
+
+export ASDF_DATA_DIR="$HOME/.asdf"
+export PATH="$ASDF_DATA_DIR/shims:$PATH"
+
+
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
+export PATH=$PATH:$HOME/go/bin
